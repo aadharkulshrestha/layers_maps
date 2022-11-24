@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Popup1 from "./Popup.js";
 import Popup2 from "./Popup.js";
 import Popup3 from "./Popup.js";
-import Popup4 from "./Popup.js";
 import { Button, Typography, TextField } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Map } from "react-map-gl";
@@ -110,7 +109,6 @@ function App({
   loopLength = 1800, // unit corresponds to the timestamp in source data
   animationSpeed = 1,
 }) {
-  const [value, setValue] = useState("");
   const [openPopup1, setOpenPopup1] = useState(false);
   const [openPopup2, setOpenPopup2] = useState(false);
   const [openPopup3, setOpenPopup3] = useState(false);
@@ -123,6 +121,12 @@ function App({
     setTime((t) => (t + animationSpeed) % loopLength);
     animation.id = window.requestAnimationFrame(animate);
   };
+
+  const spatialRange = () => {
+    
+  };
+  const spatialTemporalRange = () => {};
+  const Knn = () => {};
 
   useEffect(() => {
     animation.id = window.requestAnimationFrame(animate);
@@ -167,6 +171,7 @@ function App({
 
   return (
     <React.Fragment>
+      {/* Animated Map */}
       <DeckGL
         layers={layers}
         effects={theme.effects}
@@ -175,6 +180,8 @@ function App({
       >
         <Map reuseMaps mapStyle={mapStyle} preventStyleDiffing={true} />
       </DeckGL>
+
+      {/* Buttons */}
 
       <div className={classes.Button}>
         <Button variant="contained" component="label">
@@ -220,10 +227,8 @@ function App({
         >
           KNN
         </Button>
-        {/* <Button onClick={() => setOpenPopup(true)} style={{ marginLeft: "45%" }}>
-        Forgot Password?
-      </Button> */}
       </div>
+
       {/* {POPUP 1} */}
       <Popup1 openPopup={openPopup1} setOpenPopup={setOpenPopup1}>
         <Typography variant="h4">SPATIAL RANGE</Typography>
@@ -275,7 +280,7 @@ function App({
             fontWeight: "bold",
           }}
           //variant="contained"
-          onClick={() => {}}
+          onClick={() => {spatialRange()}}
         >
           Submit
         </Button>
@@ -359,7 +364,7 @@ function App({
             fontWeight: "bold",
           }}
           //variant="contained"
-          onClick={() => {}}
+          onClick={() => {spatialTemporalRange()}}
         >
           Submit
         </Button>
@@ -420,7 +425,7 @@ function App({
             fontWeight: "bold",
           }}
           //variant="contained"
-          onClick={() => {}}
+          onClick={() => {Knn()}}
         >
           Submit
         </Button>
